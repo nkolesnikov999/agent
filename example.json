@@ -1,0 +1,67 @@
+{
+    "exporters": {
+		"192.168.100.3": {
+			"name": "nobel-mx480.msk",
+			"site": "nobel",
+			"regions": ["msk", "center"],
+			"interfaces": {
+				"746": {
+				    "name": "xe-4/1/1.212",
+				    "description": "",
+				    "speed": 1000,
+					"type": "internal",
+					"provider": "",
+					"connection": {
+						"device": "192.168.100.112",
+						"interface": "565"
+					}
+				},
+				"747": {
+				    "name": "xe-4/1/1.213",
+				    "description": "",
+				    "speed": 1000,
+					"type": "internal",
+					"provider": "",
+					"connection": {
+						"device": "192.168.100.113",
+						"interface": "571"
+					}
+				},
+				"738": {
+				    "name": "xe-4/1/1.216",
+				    "description": "",
+				    "speed": 1000,
+					"type": "internal",
+					"provider": "",
+					"connection": {
+						"device": "192.168.100.116",
+						"interface": "567"
+					}
+				}
+			},
+			"nexthops": {
+				"192.168.100.115": {
+					"name": "dc5-cr15.nsk",
+					"site": "dc5",
+					"regions": ["nsk"],
+					"labels": {
+						"738": 299856,
+						"746": 299904,
+						"747": 299904
+					}
+				}
+			},
+			"mpls_labels": {
+				"144": {
+					"metric": 1,
+					"outInterfaces": {
+						"738": {
+							"action": "Swap",
+							"label": 299856
+						}
+					}
+				}
+			}
+		}
+    }
+}

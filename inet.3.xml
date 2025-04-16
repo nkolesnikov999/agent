@@ -1,0 +1,249 @@
+<rpc-reply message-id="urn:uuid:cea9a3fa-77b9-4486-ae37-743c71c000e6">
+    <route-information>    <!-- keepalive -->
+        <route-table>
+            <table-name>inet.3</table-name>
+            <destination-count>9</destination-count>
+            <total-route-count>9</total-route-count>
+            <active-route-count>9</active-route-count>
+            <holddown-route-count>0</holddown-route-count>
+            <hidden-route-count>0</hidden-route-count>
+            <rt style="brief">
+                <rt-destination>192.168.100.1/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age seconds="512326">5d 22:18:46</age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>172.20.10.13</to>
+                        <via>lt-4/0/0.3</via>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.2/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="512326">5d 22:18:46
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>172.20.10.13</to>
+                        <via>lt-4/0/0.3</via>
+                        <mpls-label>
+                            Push 174
+                        </mpls-label>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.111/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494367">5d 17:19:27
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.46</to>
+                        <via>xe-4/1/1.212</via>
+                        <mpls-label>
+                            Push 299904
+                        </mpls-label>
+                    </nh>
+
+                    <nh>
+                        <to>10.125.100.50</to>
+                        <via>
+                            xe-4/1/1.213
+                        </via>
+                        <mpls-label>Push 299856</mpls-label>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.112/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494392">5d 17:19:52
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.46</to>
+                        <via>xe-4/1/1.212</via>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.113/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494411">5d 17:20:11
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.50</to>
+                        <via>xe-4/1/1.213</via>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.114/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494372">5d 17:19:32
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.2</to>
+                        <via>xe-4/1/1.216</via>
+                        <mpls-label>
+                            Push 299856
+                        </mpls-label>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.115/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494367">5d 17:19:27
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <to>10.125.100.2</to>
+                        <via>
+                            xe-4/1/1.216
+                        </via>
+                        <mpls-label>Push 299888</mpls-label>
+                    </nh>
+
+                    <nh>
+                        <to>10.125.100.46</to>
+                        <via>
+                            xe-4/1/1.212
+                        </via>
+                        <mpls-label>Push 299872</mpls-label>
+                    </nh>
+
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.50</to>
+                        <via>xe-4/1/1.213</via>
+                        <mpls-label>
+                            Push 299888
+                        </mpls-label>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.116/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494382">5d 17:19:42
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.2</to>
+                        <via>xe-4/1/1.216</via>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+            <rt style="brief">
+                <rt-destination>192.168.100.117/32</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age
+                            seconds="494367">5d 17:19:27
+                    </age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>10.125.100.50</to>
+                        <via>xe-4/1/1.213</via>
+                        <mpls-label>
+                            Push 299904
+                        </mpls-label>
+                    </nh>
+
+                </rt-entry>
+
+            </rt>
+
+        </route-table>
+
+    </route-information>
+
+</rpc-reply>

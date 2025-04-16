@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply message-id="urn:uuid:58170cc3-4f5c-433c-8de7-cd0a58039397">
+    <route-information><!-- keepalive -->
+        <route-table>
+            <table-name>mpls.0</table-name>
+            <destination-count>9</destination-count>
+            <total-route-count>9</total-route-count>
+            <active-route-count>9</active-route-count>
+            <holddown-route-count>0</holddown-route-count>
+            <hidden-route-count>0</hidden-route-count>
+            <rt style="brief">
+                <rt-destination>0</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh>
+                        <nh-table>inet.0</nh-table>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>0(S=0)</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh>
+                        <nh-table>mpls.0</nh-table>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>1</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh-type>Receive</nh-type>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>2</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh>
+                        <nh-table>inet6.0</nh-table>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>2(S=0)</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh>
+                        <nh-table>mpls.0</nh-table>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>13</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>MPLS</protocol-name>
+                    <preference>0</preference>
+                    <age seconds="7696932">12w5d 02:02:12</age>
+                    <metric>1</metric>
+                    <nh-type>Receive</nh-type>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>170</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age seconds="1480840">2w3d 03:20:40</age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>172.20.10.13</to>
+                        <via>lt-4/0/0.3</via>
+                        <mpls-label>Pop</mpls-label>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>170(S=0)</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age seconds="1480840">2w3d 03:20:40</age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>172.20.10.13</to>
+                        <via>lt-4/0/0.3</via>
+                        <mpls-label>Pop</mpls-label>
+                    </nh>
+                </rt-entry>
+            </rt>
+            <rt style="brief">
+                <rt-destination>171</rt-destination>
+                <rt-entry>
+                    <active-tag>*</active-tag>
+                    <current-active/>
+                    <last-active/>
+                    <protocol-name>LDP</protocol-name>
+                    <preference>9</preference>
+                    <age seconds="1480840">2w3d 03:20:40</age>
+                    <metric>1</metric>
+                    <nh>
+                        <selected-next-hop/>
+                        <to>172.20.10.13</to>
+                        <via>lt-4/0/0.3</via>
+                        <mpls-label>Swap 174</mpls-label>
+                    </nh>
+                </rt-entry>
+            </rt>
+        </route-table>
+    </route-information>
+</rpc-reply>
