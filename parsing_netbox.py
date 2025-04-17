@@ -3,14 +3,16 @@ import requests
 
 debug = False
 
+netbox_address = config.netbox_address
+payload = {}
+nb_token = 'Token ' + config.netbox_token
+headers = {
+    'Accept': 'application/json',
+    'Authorization': nb_token,
+}
+
 def get_netbox_devices():
-    url = 'http://10.27.200.47:8000/api/dcim/devices/'
-    payload = {}
-    nb_token = 'Token ' + config.netbox_token
-    headers = {
-        'Accept': 'application/json',
-        'Authorization': nb_token,
-    }
+    url = f'http://{netbox_address}/api/dcim/devices/'
 
     ips = dict()
     while url is not None:
@@ -36,13 +38,8 @@ def get_netbox_devices():
     return ips
 
 def get_site_regions(d_name: str):
-    url = 'http://10.27.200.47:8000/api/dcim/devices/?name=' + d_name
-    payload = {}
-    nb_token = 'Token ' + config.netbox_token
-    headers = {
-        'Accept': 'application/json',
-        'Authorization': nb_token,
-    }
+    url = f'http://{netbox_address}/api/dcim/devices/?name={d_name}'
+
     response = requests.request("GET", url, headers=headers, data=payload)
     results = response.json()['results']
     if len(results) != 1:
@@ -83,13 +80,7 @@ curl -X 'GET' \
 """
 
 def get_netbox_cables():
-    url = 'http://10.27.200.47:8000/api/dcim/cables/'
-    payload = {}
-    nb_token = 'Token ' + config.netbox_token
-    headers = {
-        'Accept': 'application/json',
-        'Authorization': nb_token,
-    }
+    url = f'http://{netbox_address}/api/dcim/cables/'
 
     connections = dict()
     while url is not None:

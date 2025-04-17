@@ -57,6 +57,8 @@ def rpc_devices(ip_host):
 
     except Exception as e:
         print(f"Ошибка при получении данных с устройства: {e}")
+        if ip_host in responces:
+            responces[ip_host] = {}
 
 
 

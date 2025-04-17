@@ -1,14 +1,15 @@
 import http.server
 import socketserver
 import json
-
-import config
-import parsing_netbox
-import jun_collect
 import threading
 import schedule
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import config
+import parsing_netbox
+import jun_collect
+
 
 PORT = 8043
 DIRECTORY = "result"
