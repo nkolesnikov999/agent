@@ -3,7 +3,9 @@ from http.client import responses
 from ncclient import manager
 from lxml import etree
 
-host = "10.27.193.80"
+import config
+
+# host = "10.27.193.80"
 port = 830
 username = ""
 password = ""
@@ -24,13 +26,15 @@ rpc_inet_3 = """
     </get-route-information>
 """
 
-def rpc_device(ip_host, rpc_request):
+responces = {}
+
+def rpc_devices(ip_host):
     if ip_host == "10.27.193.80" or ip_host == "192.168.100.3":
         username = "lab"
         password = "lab123"
     else:
-        username = "admin"
-        password = "admin@123"
+        username = config.username
+        password = config.password
     try:
         with manager.connect(
             host=ip_host,
@@ -44,25 +48,27 @@ def rpc_device(ip_host, rpc_request):
             timeout=30
         ) as conn:
 
-            # Отправляем RPC-запрос напрямую
-            response = conn.rpc(rpc_request)
+            if ip_host not in responces:
+                responces[ip_host] = {}
 
-            return response
+            responces[ip_host]["interfaces"] = conn.rpc(rpc_interface).tostring
+            responces[ip_host]["nhs"] = conn.rpc(rpc_inet_3).tostring
+            responces[ip_host]["mpls_labels"] = conn.rpc(rpc_mpls_0).tostring
+
     except Exception as e:
         print(f"Ошибка при получении данных с устройства: {e}")
 
 
 
 def get_interface_info(host):
-    response = rpc_device(host, rpc_interface)
-    if response is None:
-        return dict()
-    lg_interfaces = parsing_interfaces(response.tostring)
+    response = responces.get(host, {}).get("interfaces")
+    lg_interfaces = parsing_interfaces(response)
 
     return lg_interfaces
 
 def parsing_interfaces(xml_content):
-    # Парсинг XML
+    if xml_content is None:
+        return {}
     tree = etree.fromstring(xml_content)
 
     # Список для хранения результатов
@@ -95,14 +101,14 @@ def parsing_interfaces(xml_content):
     return logical_interfaces
 
 def get_nexthops(host):
-    response = rpc_device(host, rpc_inet_3)
-    if response is None:
-        return dict()
-    nhs = parsing_inet3(response.tostring)
+    response = responces.get(host, {}).get("nhs")
+    nhs = parsing_inet3(response)
 
     return nhs
 
 def parsing_inet3(xml_content):
+    if xml_content is None:
+        return {}
     tree = etree.fromstring(xml_content)
     nexthops = {}
     for rt in tree.findall(".//rt"):
@@ -125,14 +131,14 @@ def parsing_inet3(xml_content):
     return nexthops
 
 def get_mpls_labels(host):
-    response = rpc_device(host, rpc_mpls_0)
-    if response is None:
-        return dict()
-    mpls_labels = parsing_mpls0(response.tostring)
+    response = responces.get(host, {}).get("mpls_labels")
+    mpls_labels = parsing_mpls0(response)
 
     return mpls_labels
 
 def parsing_mpls0(xml_content):
+    if xml_content is None:
+        return {}
     tree = etree.fromstring(xml_content)
     labels = {}
     for rt in tree.findall(".//rt"):
