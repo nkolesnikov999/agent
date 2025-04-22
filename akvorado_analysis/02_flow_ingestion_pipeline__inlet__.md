@@ -147,25 +147,6 @@ sequenceDiagram
         UDPInput->>UDPInput: 6b. Drops FlowMessage(s) # Сообщение самому себе, UDPInput остается активным
     end
 
-<!-- sequenceDiagram
-    participant Router as Network Device (Exporter)
-    participant UDPInput as Inlet UDP Input (e.g., port 2055)
-    participant NetFlowDecoder as Inlet NetFlow Decoder
-    participant RateLimiter as Inlet Rate Limiter
-    participant OutputChannel as Inlet Output Channel
-
-    Router->>+UDPInput: 1. Sends UDP Packet (Raw NetFlow data)
-    UDPInput->>+NetFlowDecoder: 2. Receives bytes, passes to configured decoder
-    NetFlowDecoder->>-UDPInput: 3. Decodes bytes into FlowMessage(s)
-    UDPInput->>+RateLimiter: 4. Passes FlowMessage(s) for rate check
-    alt Exporter within limit
-        RateLimiter->>-UDPInput: 5a. Approves FlowMessage(s) (maybe adjusts sampling rate)
-        UDPInput->>+OutputChannel: 6a. Sends FlowMessage(s) onward
-        OutputChannel-->>-UDPInput: (Ready for next stage)
-    else Exporter exceeds limit
-        RateLimiter->>-UDPInput: 5b. Rejects FlowMessage(s)
-        UDPInput->>UDPInput: 6b. Drops FlowMessage(s)
-    end -->
 
 ```
 
