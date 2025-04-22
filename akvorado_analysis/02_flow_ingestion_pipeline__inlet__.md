@@ -126,7 +126,28 @@ This conceptual code shows how the Inlet checks incoming `FlowMessage` batches a
 Let's trace the path of a single NetFlow packet sent from your router to Akvorado:
 
 ```mermaid
+
 sequenceDiagram
+    participant Router as Network Device (Exporter)
+    participant UDPInput as Inlet UDP Input (e.g., port 2055)
+    participant NetFlowDecoder as Inlet NetFlow Decoder
+    participant RateLimiter as Inlet Rate Limiter
+    participant OutputChannel as Inlet Output Channel
+
+    Router->>+UDPInput: 1. Sends UDP Packet (Raw NetFlow data)
+    UDPInput->>+NetFlowDecoder: 2. Receives bytes, passes to configured decoder
+    NetFlowDecoder-->>-UDPInput: 3. Decodes bytes into FlowMessage(s)  # Деактивируем NetFlowDecoder
+    UDPInput->>RateLimiter: 4. Passes FlowMessage(s) for rate check   # Убрали '+' активации
+    alt Exporter within limit
+        RateLimiter-->>UDPInput: 5a. Approves FlowMessage(s) (maybe adjusts sampling rate) # Убрали '-' деактивации
+        UDPInput->>+OutputChannel: 6a. Sends FlowMessage(s) onward
+        OutputChannel-->>-UDPInput: (Ready for next stage) # Деактивируем OutputChannel
+    else Exporter exceeds limit
+        RateLimiter-->>UDPInput: 5b. Rejects FlowMessage(s) # Убрали '-' деактивации
+        UDPInput->>UDPInput: 6b. Drops FlowMessage(s) # Сообщение самому себе, UDPInput остается активным
+    end
+
+<!-- sequenceDiagram
     participant Router as Network Device (Exporter)
     participant UDPInput as Inlet UDP Input (e.g., port 2055)
     participant NetFlowDecoder as Inlet NetFlow Decoder
@@ -144,7 +165,7 @@ sequenceDiagram
     else Exporter exceeds limit
         RateLimiter->>-UDPInput: 5b. Rejects FlowMessage(s)
         UDPInput->>UDPInput: 6b. Drops FlowMessage(s)
-    end
+    end -->
 
 ```
 
