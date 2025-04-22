@@ -215,9 +215,9 @@ sequenceDiagram
     Reporter-->>-Component: Return Prometheus Counter
 
     Component->>+Reporter: counter.Inc()
-    Reporter->>+Metrics: (Prometheus handles Inc())
-    Metrics-->>-Reporter:
-    Reporter-->>-Component:
+    Reporter->>Metrics: (Prometheus handles Inc()) # Указываем, что действие происходит в Metrics
+    # Обычно нет явного сообщения возврата от Metrics для Inc()
+    Reporter-->>-Component: (Returns after Inc) # Управление возвращается к Component
 
     Component->>+Reporter: r.RegisterHealthcheck("DB", hcFunc)
     Reporter->>+HealthReg: Add "DB" -> hcFunc to map
@@ -229,7 +229,7 @@ sequenceDiagram
     Reporter->>+HealthReg: Get all registered functions
     HealthReg-->>-Reporter: Return map["DB": hcFunc, ...]
     Reporter->>Reporter: Call hcFunc() for "DB", etc.
-    Reporter-->>-HealthEP: Return aggregated HealthcheckResult
+    Reporter-->>-HealthEP: Return aggregated HealthcheckResult # Деактивируем Reporter
 ```
 
 1.  **Logging:** When a component calls `r.Info()`, it's directly calling the embedded `zerolog.Logger`. A custom "hook" (`contextHook`) intercepts the log event just before it's written, inspects the call stack to find the calling function and file, and adds the `module` and `caller` fields to the event. *(See `common/reporter/logger/root.go`)*
