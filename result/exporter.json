@@ -1,0 +1,39 @@
+{
+  "exporters": [
+		{
+      "exportersubnet": "172.18.0.12",
+      "name": "th2-edge2.spb.example.com",
+      "default": {
+          "name": "unknown",
+          "description": "unknown",
+          "speed": 100
+      },
+      "interfaces": [
+        {
+          "ifindex": 10,
+          "name": "iface10",
+          "description": "foo:desc1",
+          "speed": 1000
+        },
+        {
+          "ifindex": 11,
+          "name": "iface11",
+          "description": "foo:desc2",
+          "speed": 1000
+        },
+        {
+          "ifindex": 20,
+          "name": "iface20",
+          "description": "foo:desc3",
+          "speed": 1000
+        },
+        {
+          "ifindex": 21,
+          "name": "iface21",
+          "description": "foo:desc4",
+          "speed": 1000
+        }
+      ]
+    }
+  ]
+}
