@@ -190,6 +190,7 @@ This way, after the first time an interface is seen, subsequent flows using that
 How does Akvorado handle these lookups and background fetches efficiently?
 
 ```mermaid
+
 sequenceDiagram
     participant Core as Core Pipeline Worker
     participant MetaComp as Metadata Component
@@ -200,22 +201,22 @@ sequenceDiagram
     participant Device as Network Device
 
     Core->>+MetaComp: 1. Lookup(ExporterIP, IfIndex)
-    MetaComp->>+Cache: 2. Lookup(ExporterIP, IfIndex)
+    MetaComp->>Cache: 2. Lookup(ExporterIP, IfIndex) # Убрали '+' у Cache
     alt Cache Hit
-        Cache-->>-MetaComp: 3a. Return Cached Details
-        MetaComp-->>-Core: 4a. Return Details (found=true)
+        Cache-->>MetaComp: 3a. Return Cached Details     # Убрали '-' у Cache
+        MetaComp-->>-Core: 4a. Return Details (found=true) # Деактивируем MetaComp
     else Cache Miss
-        Cache-->>-MetaComp: 3b. Return Not Found
+        Cache-->>MetaComp: 3b. Return Not Found         # Убрали '-' у Cache
         MetaComp->>+Dispatcher: 4b. Queue Request(ExporterIP, IfIndex)
-        MetaComp-->>-Core: 5b. Return Not Found (found=false)
+        MetaComp-->>-Core: 5b. Return Not Found (found=false) # Деактивируем MetaComp
         Dispatcher->>+Worker: 6. Assign Request to Worker
         Worker->>+Provider: 7. Query(ExporterIP, IfIndex)
         Provider->>+Device: 8. Fetch data (e.g., SNMP Get)
         Device-->>-Provider: 9. Return Data
         Provider-->>-Worker: 10. Return Details
-        Worker->>+Cache: 11. Put(ExporterIP, IfIndex, Details)
-        Cache-->>-Worker: (OK)
-        Worker-->>-Dispatcher: (Done)
+        Worker->>Cache: 11. Put(ExporterIP, IfIndex, Details) # Убрали '+' у Cache
+        Cache-->>Worker: (OK)                               # Убрали '-' у Cache
+        Worker-->>-Dispatcher: (Done) # Деактивируем Worker (опционально, можно и -->>)
     end
 
 ```
