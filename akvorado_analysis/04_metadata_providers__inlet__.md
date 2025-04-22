@@ -200,23 +200,23 @@ sequenceDiagram
     participant Provider as SNMP/Static/gNMI Provider
     participant Device as Network Device
 
-    Core->>+MetaComp: 1. Lookup(ExporterIP, IfIndex)
-    MetaComp->>Cache: 2. Lookup(ExporterIP, IfIndex) # Убрали '+' у Cache
+    Core->>+MetaComp: 1. Lookup(ExporterIP, IfIndex) # Активируем MetaComp
+    MetaComp->>Cache: 2. Lookup(ExporterIP, IfIndex)
     alt Cache Hit
-        Cache-->>MetaComp: 3a. Return Cached Details     # Убрали '-' у Cache
-        MetaComp-->>-Core: 4a. Return Details (found=true) # Деактивируем MetaComp
+        Cache-->>MetaComp: 3a. Return Cached Details
+        MetaComp-->>Core: 4a. Return Details (found=true) # Убрали '-' деактивации MetaComp
     else Cache Miss
-        Cache-->>MetaComp: 3b. Return Not Found         # Убрали '-' у Cache
-        MetaComp->>+Dispatcher: 4b. Queue Request(ExporterIP, IfIndex)
-        MetaComp-->>-Core: 5b. Return Not Found (found=false) # Деактивируем MetaComp
+        Cache-->>MetaComp: 3b. Return Not Found
+        MetaComp->>+Dispatcher: 4b. Queue Request(ExporterIP, IfIndex) # Активируем Dispatcher
+        MetaComp-->>Core: 5b. Return Not Found (found=false) # Убрали '-' деактивации MetaComp
         Dispatcher->>+Worker: 6. Assign Request to Worker
         Worker->>+Provider: 7. Query(ExporterIP, IfIndex)
         Provider->>+Device: 8. Fetch data (e.g., SNMP Get)
         Device-->>-Provider: 9. Return Data
         Provider-->>-Worker: 10. Return Details
-        Worker->>Cache: 11. Put(ExporterIP, IfIndex, Details) # Убрали '+' у Cache
-        Cache-->>Worker: (OK)                               # Убрали '-' у Cache
-        Worker-->>-Dispatcher: (Done) # Деактивируем Worker (опционально, можно и -->>)
+        Worker->>Cache: 11. Put(ExporterIP, IfIndex, Details)
+        Cache-->>Worker: (OK)
+        Worker-->>-Dispatcher: (Done) # Деактивируем Worker
     end
 
 ```
